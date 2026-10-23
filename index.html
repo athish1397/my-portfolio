@@ -1,216 +1,522 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Athish | Portfolio</title>
-    <meta name="description" content="Athish's personal portfolio website">
+    <title>Athish | Computer Science Student & Web Developer</title>
+    <meta name="description" content="Athish's personal portfolio website - Computer Science student passionate about web development, creative design, and building thoughtful digital experiences.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=JetBrains+Mono:wght@400;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Navigation -->
-    <header class="header">
-        <a href="#home" class="logo">Athish<span>.</span></a>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress-container" aria-hidden="true">
+        <div class="scroll-progress-bar" id="scrollProgress"></div>
+    </div>
 
-        <button class="menu-btn" id="menuBtn"
-                aria-label="Toggle navigation">☰</button>
+    <!-- Navigation Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <a href="#home" class="logo" aria-label="Athish Portfolio Home">Athish<span>.</span></a>
 
-        <nav id="nav">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#projects">Projects</a>
-            <a href="#skills">Skills</a>
-            <a href="#contact">Contact</a>
-        </nav>
+            <div class="header-right">
+                <!-- Theme Toggle Button -->
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark/light mode" title="Toggle theme">
+                    <span class="theme-icon light-icon">☀️</span>
+                    <span class="theme-icon dark-icon">🌙</span>
+                </button>
 
-        <a class="talk-btn" href="#contact">Let's Talk ↗</a>
+                <!-- Navigation Links -->
+                <nav id="nav" aria-label="Main Navigation">
+                    <a href="#home" class="nav-link active">Home</a>
+                    <a href="#about" class="nav-link">About</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+
+                <a class="talk-btn" href="#contact">
+                    <span>Let's Talk</span>
+                    <span class="arrow-icon">↗</span>
+                </a>
+
+                <!-- Mobile Menu Hamburger Button -->
+                <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
     </header>
 
-    <main>
+    <main id="main-content">
         <!-- Hero section -->
         <section class="hero section" id="home">
-            <div class="hero-content">
+            <div class="hero-content reveal">
+                <div class="status-badge">
+                    <span class="pulse-dot"></span>
+                    <span>Available for projects & learning</span>
+                </div>
+
                 <p class="eyebrow">COMPUTER SCIENCE STUDENT</p>
 
-                <h1>Hi, I'm<br>
+                <h1 class="hero-title">
+                    Hi, I'm<br>
                     <span class="highlight">Athish.</span>
                 </h1>
 
-                <h2>I build thoughtful<br>
-                    digital experiences.
+                <h2 class="hero-subtitle">
+                    I build thoughtful<br>
+                    <span class="typewriter-text" id="typewriter">digital experiences.</span><span class="cursor">|</span>
                 </h2>
 
                 <p class="description">
                     I'm a computer science student passionate about
-                    web development, creative design, and technology.
-                    I enjoy learning new skills and turning ideas
-                    into useful websites.
+                    modern web development, creative UI design, and interactive technology.
+                    I turn curious ideas into clean, functional websites.
                 </p>
 
                 <div class="actions">
                     <a class="primary-btn" href="#projects">
-                        View My Work <span>→</span>
+                        <span>View My Work</span>
+                        <span class="arrow-move">→</span>
                     </a>
                     <a class="secondary-btn" href="#about">
-                        About Me ↘
+                        <span>About Me</span>
+                        <span class="arrow-diag">↘</span>
                     </a>
+                    <button class="ghost-btn" id="quickCopyEmailBtn" title="Quickly copy email to clipboard">
+                        <span>📋 Copy Email</span>
+                    </button>
                 </div>
 
                 <div class="tech-tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
+                    <span class="tag tag-html">HTML5</span>
+                    <span class="tag tag-css">CSS3 / Flex & Grid</span>
+                    <span class="tag tag-js">JavaScript (ES6+)</span>
+                    <span class="tag tag-git">Git & GitHub</span>
                 </div>
             </div>
 
-            <!-- Decorative design instead of a photo -->
-            <div class="hero-art" aria-label="Creative abstract design">
-                <div class="shape shape-back"></div>
-                <div class="shape shape-front"></div>
-                <div class="code-card">
-                    <span class="code-dot"></span>
-                    <span class="code-dot"></span>
-                    <span class="code-dot"></span>
-                    <p class="code-label">MY CREATIVE SPACE</p>
-                    <div class="code-line long"></div>
-                    <div class="code-line medium"></div>
-                    <div class="code-line short"></div>
-                    <div class="code-line long"></div>
-                    <div class="code-line medium"></div>
-                    <div class="code-symbol">&lt;/&gt;</div>
+            <!-- Interactive Hero Art -->
+            <div class="hero-art-container reveal" id="heroArtContainer" aria-label="Interactive creative coding artwork">
+                <div class="hero-art" id="heroArt">
+                    <div class="shape shape-back" id="shapeBack"></div>
+                    <div class="shape shape-front" id="shapeFront"></div>
+
+                    <!-- Interactive Code Card -->
+                    <div class="code-card" id="codeCard" title="Click me to change code snippets!">
+                        <div class="code-card-header">
+                            <div class="code-dots">
+                                <span class="code-dot dot-red" title="Close"></span>
+                                <span class="code-dot dot-yellow" title="Minimize"></span>
+                                <span class="code-dot dot-green" title="Run code!"></span>
+                            </div>
+                            <span class="card-badge">interactive.js</span>
+                        </div>
+
+                        <p class="code-label">// ATHISH'S WORKSPACE</p>
+
+                        <div class="code-snippet-box">
+                            <pre><code id="interactiveCodeText"><span class="c-keyword">const</span> <span class="c-var">athish</span> = {
+  <span class="c-prop">role</span>: <span class="c-str">'CS Undergrad'</span>,
+  <span class="c-prop">loves</span>: [<span class="c-str">'Web Dev'</span>, <span class="c-str">'UI/UX'</span>],
+  <span class="c-prop">status</span>: <span class="c-str">'Ready to build ✨'</span>
+};</code></pre>
+                        </div>
+
+                        <div class="code-card-footer">
+                            <span class="code-tip">💡 Click card to cycle snippet</span>
+                            <div class="code-symbol">&lt;/&gt;</div>
+                        </div>
+                    </div>
+
+                    <span class="star star-one" aria-hidden="true">✳</span>
+                    <span class="star star-two" aria-hidden="true">✦</span>
+                    <span class="star star-three" aria-hidden="true">★</span>
+
+                    <div class="floating-note">
+                        <span class="note-icon">✨</span>
+                        <span>Ideas into reality</span>
+                    </div>
                 </div>
-                <span class="star star-one">✳</span>
-                <span class="star star-two">✦</span>
-                <div class="floating-note">Ideas into reality ✨</div>
             </div>
         </section>
 
         <!-- About section -->
         <section class="about section" id="about">
-            <p class="eyebrow">GET TO KNOW ME</p>
-            <h2>A little about <span class="highlight">me.</span></h2>
+            <div class="about-grid">
+                <div class="about-text-col reveal">
+                    <p class="eyebrow">GET TO KNOW ME</p>
+                    <h2>A little about <span class="highlight">me.</span></h2>
 
-            <p class="about-text">
-                Hello! I'm Athish, a computer science student who
-                enjoys exploring technology and creating websites.
-                I'm developing my programming skills and learning
-                how to build user-friendly digital experiences.
-                My goal is to keep improving, work on meaningful
-                projects, and grow as a developer.
-            </p>
+                    <p class="about-text">
+                        Hello! I'm Athish, an aspiring computer science student driven by a deep fascination
+                        for how logic and creativity meet on the web. I enjoy experimenting with responsive layouts,
+                        clean UI components, and modern JavaScript to create experiences that feel intuitive and alive.
+                    </p>
+
+                    <p class="about-text">
+                        Whether it's building interactive web applications, solving algorithmic problems, or optimizing
+                        performance, I am constantly learning, writing clean code, and pushing myself to build better digital products.
+                    </p>
+
+                    <!-- Interactive Quick Stats -->
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <span class="stat-number">CS</span>
+                            <span class="stat-label">Student & Developer</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Dedication to Craft</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number">3+</span>
+                            <span class="stat-label">Featured Projects</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-card-col reveal">
+                    <div class="bio-card">
+                        <div class="bio-card-header">
+                            <div class="bio-avatar">👨‍💻</div>
+                            <div>
+                                <h3>Athish</h3>
+                                <p class="bio-subtitle">Computer Science Undergrad</p>
+                            </div>
+                        </div>
+                        <ul class="bio-list">
+                            <li><strong>Focus:</strong> Frontend Engineering & UI/UX</li>
+                            <li><strong>Core Stack:</strong> HTML5, CSS3, JavaScript (ES6+)</li>
+                            <li><strong>Tools:</strong> Git, VS Code, Figma basics</li>
+                            <li><strong>Goal:</strong> Building impactful open-source & real-world apps</li>
+                        </ul>
+                        <div class="bio-actions">
+                            <a href="#contact" class="secondary-btn small-btn">Get In Touch ✉</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Projects section -->
         <section class="projects section" id="projects">
-            <div class="section-heading">
+            <div class="section-heading reveal">
                 <div>
                     <p class="eyebrow">WHAT I'M WORKING ON</p>
                     <h2>Featured projects<span class="highlight">.</span></h2>
                 </div>
-                <p class="muted">Ideas, practice, and creativity.</p>
+                <p class="muted">Ideas, practice, and hands-on creativity.</p>
             </div>
 
-            <div class="project-grid">
-                <article class="project-card recipe">
-                    <div class="project-icon">🍝</div>
+            <!-- Project Filter Controls -->
+            <div class="project-filters reveal" role="tablist" aria-label="Filter projects">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="javascript">JavaScript</button>
+                <button class="filter-btn" data-filter="css">HTML & CSS</button>
+            </div>
+
+            <div class="project-grid" id="projectGrid">
+                <!-- Project 1: Recipe Finder -->
+                <article class="project-card recipe reveal" data-category="javascript" data-project-id="recipe">
+                    <div class="project-card-top">
+                        <div class="project-icon">🍝</div>
+                        <span class="project-badge">Featured</span>
+                    </div>
                     <p class="project-number">PROJECT 01</p>
                     <h3>Recipe Finder</h3>
-                    <p>A concept website for discovering recipes
-                       and meal ideas.</p>
-                    <span class="project-type">HTML · CSS · JavaScript</span>
+                    <p>A dynamic web app for exploring delicious recipes, searching ingredients, and finding everyday meal inspiration.</p>
+                    
+                    <div class="project-tech-pills">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <div class="project-card-footer">
+                        <button class="card-action-btn view-details-btn" data-project="recipe">
+                            <span>View Details</span>
+                            <span class="icon">↗</span>
+                        </button>
+                    </div>
                 </article>
 
-                <article class="project-card planner">
-                    <div class="project-icon">📚</div>
+                <!-- Project 2: Study Planner -->
+                <article class="project-card planner reveal" data-category="javascript" data-project-id="planner">
+                    <div class="project-card-top">
+                        <div class="project-icon">📚</div>
+                        <span class="project-badge">Productivity</span>
+                    </div>
                     <p class="project-number">PROJECT 02</p>
                     <h3>Study Planner</h3>
-                    <p>A study planning concept for managing tasks
-                       and daily goals.</p>
-                    <span class="project-type">HTML · CSS · JavaScript</span>
+                    <p>A smart student dashboard with interactive task tracking, pomodoro-style study session goals, and progress monitoring.</p>
+                    
+                    <div class="project-tech-pills">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                    </div>
+
+                    <div class="project-card-footer">
+                        <button class="card-action-btn view-details-btn" data-project="planner">
+                            <span>View Details</span>
+                            <span class="icon">↗</span>
+                        </button>
+                    </div>
                 </article>
 
-                <article class="project-card travel">
-                    <div class="project-icon">🌍</div>
+                <!-- Project 3: Travel Journal -->
+                <article class="project-card travel reveal" data-category="css" data-project-id="travel">
+                    <div class="project-card-top">
+                        <div class="project-icon">🌍</div>
+                        <span class="project-badge">Design</span>
+                    </div>
                     <p class="project-number">PROJECT 03</p>
                     <h3>Travel Journal</h3>
-                    <p>A travel journal concept to organize places
-                       and trip memories.</p>
-                    <span class="project-type">HTML · CSS</span>
+                    <p>An aesthetic, storytelling travel log with curated destination photo grids, itinerary entries, and responsive cards.</p>
+                    
+                    <div class="project-tech-pills">
+                        <span>HTML5</span>
+                        <span>Modern CSS</span>
+                        <span>Responsive</span>
+                    </div>
+
+                    <div class="project-card-footer">
+                        <button class="card-action-btn view-details-btn" data-project="travel">
+                            <span>View Details</span>
+                            <span class="icon">↗</span>
+                        </button>
+                    </div>
                 </article>
             </div>
 
-            <p class="project-note">
-                These are sample project ideas. Replace them with
-                your actual projects as you build them.
+            <p class="project-note reveal">
+                💡 <em>Have a project in mind or want to collaborate on something cool? Feel free to reach out below!</em>
             </p>
         </section>
 
         <!-- Skills section -->
         <section class="skills section" id="skills">
-            <p class="eyebrow">MY TOOLKIT</p>
-            <h2>Skills I'm developing<span class="highlight">.</span></h2>
+            <div class="reveal">
+                <p class="eyebrow">MY TOOLKIT</p>
+                <h2>Skills I'm developing<span class="highlight">.</span></h2>
+                <p class="muted section-subtext">Technologies and foundational skills I practice and apply in my work.</p>
+            </div>
 
             <div class="skills-grid">
-                <div class="skill">
-                    <span>01</span>
-                    <div>
-                        <h3>HTML</h3>
-                        <p>Building webpage structure</p>
+                <!-- Skill 1 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-index">01</span>
+                        <span class="skill-badge">Frontend</span>
+                    </div>
+                    <div class="skill-body">
+                        <h3>HTML5 & Semantic Markup</h3>
+                        <p>Clean structure, accessible elements (ARIA), and SEO best practices.</p>
+                    </div>
+                    <div class="skill-bar-wrapper">
+                        <div class="skill-bar-fill" style="--level: 90%;"></div>
                     </div>
                 </div>
 
-                <div class="skill">
-                    <span>02</span>
-                    <div>
-                        <h3>CSS</h3>
-                        <p>Styling and responsive layouts</p>
+                <!-- Skill 2 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-index">02</span>
+                        <span class="skill-badge">Styling</span>
+                    </div>
+                    <div class="skill-body">
+                        <h3>CSS3, Flexbox & Grid</h3>
+                        <p>Responsive mobile-first layouts, custom animations, variables, and dark themes.</p>
+                    </div>
+                    <div class="skill-bar-wrapper">
+                        <div class="skill-bar-fill" style="--level: 85%;"></div>
                     </div>
                 </div>
 
-                <div class="skill">
-                    <span>03</span>
-                    <div>
-                        <h3>JavaScript</h3>
-                        <p>Adding interactive features</p>
+                <!-- Skill 3 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-index">03</span>
+                        <span class="skill-badge">Programming</span>
+                    </div>
+                    <div class="skill-body">
+                        <h3>JavaScript (ES6+)</h3>
+                        <p>DOM manipulation, asynchronous fetch APIs, event handling, and logic building.</p>
+                    </div>
+                    <div class="skill-bar-wrapper">
+                        <div class="skill-bar-fill" style="--level: 80%;"></div>
                     </div>
                 </div>
 
-                <div class="skill">
-                    <span>04</span>
-                    <div>
-                        <h3>Problem Solving</h3>
-                        <p>Learning through practice</p>
+                <!-- Skill 4 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-index">04</span>
+                        <span class="skill-badge">Mindset</span>
+                    </div>
+                    <div class="skill-body">
+                        <h3>Problem Solving & CS Fundamentals</h3>
+                        <p>Data structures basics, algorithmic thinking, and debugging with curiosity.</p>
+                    </div>
+                    <div class="skill-bar-wrapper">
+                        <div class="skill-bar-fill" style="--level: 78%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-index">05</span>
+                        <span class="skill-badge">Workflow</span>
+                    </div>
+                    <div class="skill-body">
+                        <h3>Git & GitHub</h3>
+                        <p>Version control, branching, repository management, and collaboration.</p>
+                    </div>
+                    <div class="skill-bar-wrapper">
+                        <div class="skill-bar-fill" style="--level: 75%;"></div>
+                    </div>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="skill-card reveal">
+                    <div class="skill-header">
+                        <span class="skill-index">06</span>
+                        <span class="skill-badge">Design</span>
+                    </div>
+                    <div class="skill-body">
+                        <h3>Responsive UI/UX Principles</h3>
+                        <p>Creating user-friendly layouts with attention to typography, spacing, and contrast.</p>
+                    </div>
+                    <div class="skill-bar-wrapper">
+                        <div class="skill-bar-fill" style="--level: 82%;"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact section -->
+        <!-- Interactive Contact section -->
         <section class="contact section" id="contact">
-            <p class="eyebrow">HAVE AN IDEA?</p>
-            <h2>Let's create something<br>
-                <span class="highlight">great together.</span>
-            </h2>
-            <p class="muted">
-                Want to connect, share an idea, or discuss a project?
-            </p>
+            <div class="contact-box reveal">
+                <p class="eyebrow">HAVE AN IDEA?</p>
+                <h2>Let's create something<br>
+                    <span class="highlight">great together.</span>
+                </h2>
+                <p class="muted contact-lead">
+                    Whether you have an inquiry, feedback, an internship opportunity, or just want to chat about tech — my inbox is always open!
+                </p>
 
-            <a class="primary-btn"
-               href="mailto:athish@2008gmail.com">
-                Email Me ↗
-            </a>
+                <!-- Interactive Contact Container -->
+                <div class="contact-interactive-container">
+                    <!-- Quick Direct Action Card -->
+                    <div class="contact-card-direct">
+                        <h3>Direct Contact</h3>
+                        <p>Click below to copy my email or open your email client directly:</p>
 
-            <p class="email">athish@2008gmail.com</p>
+                        <div class="email-badge-container">
+                            <span class="email-text" id="emailAddressText">athish2008@gmail.com</span>
+                            <button class="copy-btn" id="copyEmailBtn" aria-label="Copy email address" title="Copy to clipboard">
+                                <span class="copy-icon">📋</span>
+                                <span class="copy-text">Copy</span>
+                            </button>
+                        </div>
+
+                        <div class="contact-buttons-row">
+                            <a class="primary-btn" id="mailtoLink" href="mailto:athish2008@gmail.com?subject=Hello%20Athish!%20Connecting%20from%20Portfolio">
+                                <span>Email Me Directly</span>
+                                <span>↗</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Quick Message Form -->
+                    <div class="contact-card-form">
+                        <h3>Send a Quick Note</h3>
+                        <form id="contactForm" novalidate>
+                            <div class="form-group">
+                                <label for="senderName">Your Name</label>
+                                <input type="text" id="senderName" name="name" placeholder="Alex Morgan" required autocomplete="name">
+                                <span class="form-error" id="nameError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="senderEmail">Your Email</label>
+                                <input type="email" id="senderEmail" name="email" placeholder="alex@example.com" required autocomplete="email">
+                                <span class="form-error" id="emailError"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="label-with-count">
+                                    <label for="senderMessage">Message</label>
+                                    <span class="char-count" id="charCount">0/300</span>
+                                </div>
+                                <textarea id="senderMessage" name="message" rows="3" maxlength="300" placeholder="Hey Athish, I saw your portfolio and would love to connect..." required></textarea>
+                                <span class="form-error" id="messageError"></span>
+                            </div>
+
+                            <button type="submit" class="submit-form-btn" id="submitFormBtn">
+                                <span>Send Message</span>
+                                <span class="btn-spinner" aria-hidden="true"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <a href="#home" class="logo">Athish<span>.</span></a>
-        <p>Designed and built with curiosity.</p>
-        <p>© <span id="year"></span> Athish</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-left">
+                <a href="#home" class="logo">Athish<span>.</span></a>
+                <p class="footer-tagline">Designed and built with curiosity & passion.</p>
+            </div>
+
+            <div class="footer-center">
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+
+            <div class="footer-right">
+                <p>© <span id="year"></span> Athish. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
+
+    <!-- Interactive Project Details Modal -->
+    <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <div class="modal-container">
+            <button class="modal-close" id="modalCloseBtn" aria-label="Close project modal">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamically populated via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification for clipboard & feedback -->
+    <div class="toast" id="toast" role="status" aria-live="polite">
+        <span class="toast-icon" id="toastIcon">📋</span>
+        <span class="toast-message" id="toastMsg">Email copied to clipboard!</span>
+    </div>
+
+    <!-- Back to top floating button -->
+    <button class="back-to-top" id="backToTop" aria-label="Scroll back to top" title="Back to top">
+        ↑
+    </button>
 
     <script src="script.js"></script>
 </body>
